@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'loginRegister/style.css' %}">
+    <title>Login and Register</title>
+</head>
+<body>
+    {% if messages %} 
+        {% for message in messages %}
+            <h2>{{ message }}</h2>
+        {% endfor %} 
+    {% endif %} 
+    <h1>Registration</h1>
+    <form class='index_forms' action='/loginRegister/create' method='POST'>
+        {% csrf_token %}
+        First Name: <input type='text' name='first_name'>
+        Last Name: <input type='text' name='last_name'>
+        Email: <input type='text' name='email'>
+        Password: <input type='password' name='password'>
+        Confirm pw: <input type='password' name='confirm_password'><br>
+        <input class='register_login' type='submit' value='Register'>
+    </form>
+    <h1>Login</h1>
+    <form class='index_forms' action='/loginRegister/login' method='post'>
+        {% csrf_token %}
+        <label>Email: </label><input type='text' name='email'>
+        <label>Password: </label><input type='password' name='password'><br>
+        <input class='register_login' type='submit' value='Login'>
+    </form>
+</body>
+</html>
